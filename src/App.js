@@ -1,58 +1,37 @@
 import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
-import './App.css';
-
+import Navbar from './layouts/Navbar';
+import Landing from './views/Landing';
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Register from './components/Register';
+import Login from './views/Login';
+import Home from './views/Home';
+import PrivateRoute from "./components/higher_order_component/PrivateRoute";
+import UnPrivateRoute from "./components/higher_order_component/UnPrivateRoute";
+import myprofile from './components/user/myprofile';
+import addaBook from './components/user/addaBook';
+import mybooks from './components/user/mybooks';
+import oderNewBook from './components/user/oderNewBook';
+import orderedBooks from './components/user/orderedBooks';
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
-    </div>
-  );
-}
 
+    <div>
+      <Router>
+        <Navbar />
+        <Switch>
+          <PrivateRoute role={["Reader","Library","Author"]} path="/myprofile" component={myprofile} />
+          <PrivateRoute role={["Reader","Library","Author"]} path="/addbook" component={addaBook} />
+          <PrivateRoute role={["Reader","Library","Author"]} path="/myListOfbooks" component={mybooks} />
+          <PrivateRoute role={["Reader","Library","Author"]} path="/odernewbook" component={oderNewBook} />
+          <PrivateRoute role={["Reader","Library","Author"]} path="/myorderedbooks" component={orderedBooks} />
+          <PrivateRoute role={["Reader","Admin","Library","Author"]} path="/home" component={Home} />
+          <UnPrivateRoute path="/Login" component={Login} />
+          <UnPrivateRoute path="/Register" component={Register} />
+          <Route exact path="/" component={Landing} />
+        </Switch>
+
+      </Router>
+    </div>)
+
+}
 export default App;

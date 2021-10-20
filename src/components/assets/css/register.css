@@ -1,0 +1,30 @@
+.Author img{
+    cursor: pointer;
+    height: 200px;
+}
+.Author h4{
+margin-top: 20px;
+    color: rgb(100, 117, 35);
+}
+
+.spanf {
+    color:rgb(238, 216, 16);
+    font-size: 72px;
+    font-weight: bold;
+    margin-bottom: 50px;
+    }
+    
+.Author {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.registerform{
+    margin-top: 0px;
+    padding: 100px;
+    }
+
+.actors > div {
+    margin: 20px;
+}
