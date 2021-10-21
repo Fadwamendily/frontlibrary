@@ -1,10 +1,21 @@
-.Author img{
+.Book img{
     cursor: pointer;
     height: 200px;
+    width: 200px;
+    display: flex;
+    margin-left: 50px;
+    align-items: center;
+
+
+
 }
-.Author h4{
+.Book h4{
 margin-top: 20px;
     color: rgb(100, 117, 35);
+    margin-left: 50px;
+    align-items: center;
+
+
 }
 
 .spanf {
@@ -14,7 +25,7 @@ margin-top: 20px;
     margin-bottom: 50px;
     }
     
-.Author {
+.Book {
     display: flex;
     align-items: center;
     flex-direction: column;

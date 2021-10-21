@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Navbar from './layouts/Navbar';
 import Landing from './views/Landing';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -12,7 +12,20 @@ import addaBook from './components/user/addaBook';
 import mybooks from './components/user/mybooks';
 import oderNewBook from './components/user/oderNewBook';
 import orderedBooks from './components/user/orderedBooks';
+import { getallcategories } from './features/categories/categoriesSlice';
+import { getalllanguages } from './features/Languages/languagesSlice';
+import { useDispatch } from 'react-redux';
 function App() {
+  
+  const dispatch = useDispatch()
+    
+  useEffect(() => {
+    dispatch(getallcategories())
+   
+  }, [])
+  useEffect(() => {
+ dispatch(getalllanguages())
+  }, [])
   return (
 
     <div>

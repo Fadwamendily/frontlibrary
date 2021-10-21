@@ -2,8 +2,8 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { getAllCategories } from './categoriesAPI';
 
 const initialState = {
-    categories: [],
-    categorynames: []
+    categoriesname: [],
+
 };
 
 export const getallcategories = createAsyncThunk(
@@ -31,15 +31,12 @@ export const categoriesSlice = createSlice({
             })
             .addCase(getallcategories.fulfilled, (state, action) => {
                 console.log(action.payload);
-                state.categories = action.payload.data
-
                 let arr = []
-
                 for (let item of action.payload.data) {
-                    arr.push(item.nom_categorie)
+                    arr.push(item.category)
                 }
 
-                state.categorynames = arr
+                state.categoriesname = arr 
             })
             .addCase(getallcategories.rejected, (state, action) => {
 
@@ -50,8 +47,7 @@ export const categoriesSlice = createSlice({
 export const { } = categoriesSlice.actions;
 
 
-export const selectcategories = (state) => state.categories.categories;
-export const selectcategorynames = (state) => state.categories.categorynames;
+export const selectcategoriesname = (state) => state.categories.categoriesname;
 
 
 export default categoriesSlice.reducer;
