@@ -5,7 +5,7 @@ export const requests = {
  
     userapi: serverurl + '/users',
     bookapi: serverurl + '/books',
-    fileapi: serverurl + '/files',
     categoriesapi:serverurl+'/categories',
     languagesapi:serverurl+'/languages',
+    ordersapi:serverurl+'/commandes',
 }

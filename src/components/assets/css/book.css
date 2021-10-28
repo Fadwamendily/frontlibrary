@@ -39,3 +39,11 @@ margin-top: 20px;
 .actors > div {
     margin: 20px;
 }
+
+.bouttonn{
+
+
+
+    display: flex;
+    align-items: left;
+}

@@ -7,6 +7,7 @@ import Usersidebar from '../../../layouts/Sidebar/UserSidebar';
 import { AuthContext } from "../../context/AuthContext";
 import Readersidebar from '../../../layouts/Sidebar/ReaderSidebar';
 import './profile.css'
+import moment from 'moment'
 import { CameraOutlined } from '@ant-design/icons';
 import { useSelector } from 'react-redux';
 import { getme, uploadavatar, updateuser, selectuserdetails, selectavatarstatus } from '../../../features/users/userSlice';
@@ -63,8 +64,8 @@ export default () => {
        }
     return (
         <>
-            <Layout style={{ padding: 0, height: "100vh" }} >
-                <Layout style={{ padding: '70px 0px' }} >
+            <Layout style={{ padding: 0, height: "110vh" }} >
+                <Layout style={{ padding: '78px 0px' }} >
                     {user.role === "Admin" ? <Adminsidebar /> :
                         user.role === "Reader" ? <Readersidebar /> : <Usersidebar />}
                     <Content style={{ marginLeft: '20px' }} >
@@ -93,7 +94,7 @@ export default () => {
                                             <div className="col-md-12"><label className="labels">Last name</label><input value={ userDetails.lastName} onChange={handleChange} name="lastName" type="text" className="form-control" disabled={disabled} /></div>
                                             <div className="col-md-12"><label className="labels">Adresse</label><input type="text" className="form-control" value={ userDetails.adresse} onChange={handleChange} name="adresse" disabled={disabled} /></div>
                                             <div className="col-md-12"><label className="labels">Gender</label><input type="text" className="form-control" value={ userDetails.gender} onChange={handleChange} name="gender" disabled={disabled} /></div>
-                                            <div className="col-md-12"><label className="labels">birthDate</label><input type="date" className="form-control" value={userDetails.birthDate} onChange={handleChange}  name="birthDate" disabled={disabled} /></div>
+                                            <div className="col-md-12"><label className="labels">birthDate</label><input type="text" className="form-control" value={(userDetails.birthDate.slice(0, 10))} onChange={handleChange}  name="birthDate" disabled={disabled} /></div>
                                             <div className="col-md-12"><label className="labels">Email ID</label><input type="email" className="form-control" value={userDetails.email} onChange={handleChange} name="email" disabled={disabled} /></div>
                                             <div className="mt-5 text-center"><button className="btn btn-primary profile-button" type="button" onClick ={handleupdate}>save</button></div>
                                         </div>

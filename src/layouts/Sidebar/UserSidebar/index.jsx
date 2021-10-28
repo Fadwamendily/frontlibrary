@@ -7,7 +7,7 @@ export default function Usersidebar() {
     const { Sider } = Layout;
 /*     const [url, seturl] = useState('')
  */    return (
-        <Sider className="site-layout-background" width={200}>
+        <Sider className="site-layout-background" style={{background:"orange"}} width={200}>
             <Menu
                 mode="inline"
                 defaultSelectedKeys={['1']}

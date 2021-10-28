@@ -30,13 +30,14 @@ export const categoriesSlice = createSlice({
 
             })
             .addCase(getallcategories.fulfilled, (state, action) => {
-                console.log(action.payload);
+            /*     console.log(action.payload);
                 let arr = []
                 for (let item of action.payload.data) {
                     arr.push(item.category)
-                }
+                } */
 
-                state.categoriesname = arr 
+                state.categoriesname = action.payload.data
+
             })
             .addCase(getallcategories.rejected, (state, action) => {
 

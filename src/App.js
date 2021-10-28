@@ -9,23 +9,24 @@ import PrivateRoute from "./components/higher_order_component/PrivateRoute";
 import UnPrivateRoute from "./components/higher_order_component/UnPrivateRoute";
 import myprofile from './components/user/myprofile';
 import addaBook from './components/user/addaBook';
-import mybooks from './components/user/mybooks';
+import mybooks from './components/user/mybooks/bookList';
 import oderNewBook from './components/user/oderNewBook';
 import orderedBooks from './components/user/orderedBooks';
 import { getallcategories } from './features/categories/categoriesSlice';
 import { getalllanguages } from './features/Languages/languagesSlice';
 import { useDispatch } from 'react-redux';
+import { getallbook } from './features/Books/bookSlice';
 function App() {
   
   const dispatch = useDispatch()
     
   useEffect(() => {
     dispatch(getallcategories())
+    dispatch(getalllanguages())
+    dispatch(getallbook())
    
   }, [])
-  useEffect(() => {
- dispatch(getalllanguages())
-  }, [])
+ 
   return (
 
     <div>

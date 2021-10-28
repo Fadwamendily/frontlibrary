@@ -2,7 +2,6 @@ import { configureStore } from '@reduxjs/toolkit';
 import counterReducer from '../features/counter/counterSlice';
 import usersReducer from '../features/users/userSlice';
 import booksReducers from '../features/Books/bookSlice';
-import filesReducers from '../features/file/fileSlice';
 import categoriesReducers from '../features/categories/categoriesSlice';
 import languagesReducers from '../features/Languages/languagesSlice';
 
@@ -11,7 +10,6 @@ export const store = configureStore({
     counter: counterReducer,
     users: usersReducer,
     books: booksReducers,
-    files: filesReducers,
     categories:categoriesReducers,
     languages:languagesReducers
   },

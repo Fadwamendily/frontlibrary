@@ -20,7 +20,7 @@ export const languagesSlice = createSlice({
     initialState,
     reducers: {
 
-    
+
 
     },
 
@@ -31,12 +31,12 @@ export const languagesSlice = createSlice({
             })
             .addCase(getalllanguages.fulfilled, (state, action) => {
                 console.log(action.payload);
-                let arr = []
+                /* let arr = []
                 for (let item of action.payload.data) {
                     arr.push(item.language)
-                }
+                } */
 
-                state.languagesname = arr  
+                state.languagesname = action.payload.data
             })
             .addCase(getalllanguages.rejected, (state, action) => {
 

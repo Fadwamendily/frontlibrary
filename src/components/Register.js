@@ -9,6 +9,7 @@ import './../components/assets/css/register.css'
 import 'antd/dist/antd.css';
 import abc from '../../src/components/assets/images/abc.png'
 import '../views/Login/login.css'
+import moment from 'moment'
 
 import {
     Form,
@@ -28,6 +29,8 @@ export default function Register(props) {
 
 
     const [role, setrole] = useState('');
+    const dateFormat = 'DD/MM/YYYY';
+    const customFormat = value => `custom format: ${value.format(dateFormat)}`
 
     const { setUser, setIsAuth } = useContext(AuthContext);
     const [userInfo, setUserInfo] = useState(null);
@@ -160,7 +163,7 @@ export default function Register(props) {
                         </Select>
                     </Form.Item>
                     <Form.Item name='birthDate'label="Birth Date">
-                        <DatePicker />
+                        <DatePicker format={dateFormat} defaultValue={moment('2015/01/01', dateFormat)}/>
                     </Form.Item>
                     <Form.Item name='gender'label="Register Now" style={{align:"right"}}>
                         <Button type="primary" htmlType="submit" style={{align:"right", background:"orange"}}> Submit</Button>

@@ -8,6 +8,7 @@ import Readersidebar from '../../../layouts/Sidebar/ReaderSidebar';
 import '../../assets/css/book.css'
 import 'antd/dist/antd.css';
 import { message } from 'antd';
+import 'antd/dist/antd.min.css'
 import { selectcategoriesname } from '../../../features/categories/categoriesSlice';
 import { selectlanguagesname } from '../../../features/Languages/languagesSlice';
 import {
@@ -23,7 +24,8 @@ import {
     Switch,
     Modal
 } from 'antd';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { creatbook } from '../../../features/Books/bookSlice';
 
 const { TextArea } = Input;
 const { Option } = Select;
@@ -33,25 +35,53 @@ export default () => {
     const { user } = useContext(AuthContext)
     const languages = useSelector(selectlanguagesname)
     const categories = useSelector(selectcategoriesname)
-    const [isModalVisible, setIsModalVisible] = useState(false);
-  /*   const handletype = (value) => {
-        if (value === 'audio'  === 'pdf') {
-            showModal()
-        }
-    } */
+    const dispatch = useDispatch()
 
-    const showModal = () => {
-        setIsModalVisible(true);
+
+
+
+    /*   const handletype = (value) => {
+          if (value === 'audio'  === 'pdf') {
+              showModal()
+          }
+      } */
+
+    const [file, setfile] = useState(null)
+    const [image, setimage] = useState(null)
+
+    const [Book, setBook] = useState({
+        title: "",
+        price: "",
+        publicationDate: "",
+        language: "",
+        category: "",
+
+    });
+    const handleChange = e => {
+        const { name, value } = e.target;
+        setBook(prevState => ({
+            ...prevState,
+            [name]: value
+        }));
     };
 
-    const handleOk = () => {
-        setIsModalVisible(false);
+    const handlebook = () => {
 
-    };
+        console.log('Book', Book)
+        let data = new FormData()
+        data.append('file', file)
+        data.append('photo', image)
+        data.append('language', Book.language)
+        data.append('category', Book.category)
+        data.append('price', Book.price)
+        data.append('publicationDate', Book.publicationDate)
+        data.append('title', Book.title)
+        console.log('data', data)
 
-    const handleCancel = () => {
-        setIsModalVisible(false);
-    };
+        dispatch(creatbook(data))
+    }
+
+
     const props = {
         name: 'file',
         action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
@@ -75,88 +105,49 @@ export default () => {
                 <Layout style={{ padding: '70px 0px' }} >
                     {user.role === "Admin" ? <Adminsidebar /> :
                         user.role === "Reader" ? <Readersidebar /> : <Usersidebar />}
-                    <Content style={{ marginTop: '50px', marginLeft: '00px' }} >
-                        <Form name="basic"
-                            labelCol={{
-                                span: 8,
-                            }}
-                            wrapperCol={{
-                                span: 12,
-                            }}
-                            initialValues={{
-                                remember: true,
-                            }}
-                            /*     onFinish={onFinish}
-                                onFinishFailed={onFinishFailed} */
-                            autoComplete="off"
-                        /*  style= {{backgroundImage:`url(${abc})`}} */
-                        >
+                    <Content style={{ marginTop: '50px', marginLeft: '200px' }} >
 
-                            <Form.Item name='title' label="Title">
-                                <Input />
-                            </Form.Item>
-                            <Form.Item name='price' label="Price">
-                                <Input />
-                            </Form.Item>
-                            <Form.Item name='publicationDate' label="Publication Date">
-                                <DatePicker />
-                            </Form.Item>
-                            <Form.Item name='category' label="Category">
-                                <Select>
-                                    {
-                                        categories.map((c, i) => {
-                                            return (
-                                                <Select.Option value={c._id}>{c}</Select.Option>
-
-                                            )
-                                        })
-                                    }
-                                </Select>
-                            </Form.Item>
-                            <Form.Item name='language' label="Language">
-                                <Select>
-                                    {
-                                        languages.map((c, i) => {
-                                            return (
-                                                <Select.Option value={c._id}>{c}</Select.Option>
-
-                                            )
-                                        })
-                                    }
-                                </Select>
-                            </Form.Item>
-                            <Form.Item name='image' label="Image">
-                                <input type="file" multiple />
-                            </Form.Item>
-
-                            <Form.Item name='file' label="Files">
-                                <Button type="primary" onClick={showModal}>
-                                Create 
-                                </Button>
-                                <Modal title="Basic Modal" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
-
-                                    <Form.Item name='type' label="Type" >
-                                        <Select span="6">
-                                            <Select.Option value="pdf" >PDF</Select.Option>
-                                            <Select.Option value="audio">Audio</Select.Option>
-                                            <Select.Option value="printed" >Printed</Select.Option>
-                                        </Select>
-                                    </Form.Item>
-                                    <Form.Item name='name' label="File title" >
-                                        <Input />
-                                    </Form.Item>
-                                    <Form.Item name='file' label="Files" >
-                                        <input type="file" multiple />
-                                    </Form.Item>
-                                </Modal>
-                            </Form.Item>
-            
-                        </Form>  
+                        <div className="col-md-5 border-right">
+                            <div className="p-3 py-5">
+                                <div className="col-md-12"><label className="labels">Title</label><input name="title" type="text" className="form-control" onChange={handleChange} /></div>
+                                <div className="col-md-12"><label className="labels">Price</label><input name="price" type="number" className="form-control" onChange={handleChange} /></div>
+                                <div className="col-md-12"><label className="labels">Publication Date</label><input name="publicationDate" type="date" className="form-control" onChange={handleChange} /></div>
+                                <div className="col-md-12"><label className="labels">Language</label>
+                                    <select className="form-control" name="language" onChange={handleChange}>
+                                        {
+                                            languages.map((c, i) => {
+                                                return (
+                                                    <option value={c._id}>{c.language}</option>
+                                                )
+                                            })
+                                        }
+                                    </select>
+                                </div>
+                                <div className="col-md-12"><label className="labels">Category</label>
+                                    <select className="form-control" name="category" onChange={handleChange}>
+                                        {
+                                            categories.map((c, i) => {
+                                                return (
+                                                    <option value={c._id}>{c.category}</option>
+                                                )
+                                            })
+                                        }
+                                    </select>
+                                </div>
+                                <div className="col-md-12"><label className="labels">Image</label>
+                                    <input type="file" id="photo" name="photo" accept="image/*" onChange={(e) => setimage(e.target.files[0])} />
+                                </div>
+                                <div className="col-md-12"><label className="labels">File</label>
+                                    <input type="file" id="file" name="file" accept="application/pdf,audio/* " onChange={(e) => setfile(e.target.files[0])} />
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-success mr-2" style={{ marginLeft: "300px", width: "200px" }} onClick={() => handlebook()}>Submit your New Book</button>
+                        </div>
 
                     </Content>
                 </Layout>
                 <Footer>Footer</Footer>
-            </Layout>
+            </Layout >
         </>
 
 

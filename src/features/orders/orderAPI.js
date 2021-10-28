@@ -2,7 +2,7 @@ import axios from "axios";
 import { requests } from "../requests";
 
 export function createbook(data) {
-    return axios.post(requests.bookapi +'/addbook', data)
+    return axios.post(requests.ordersapi +'/addcommande', data)
         .then(res => {
             return res
         })
@@ -11,7 +11,7 @@ export function createbook(data) {
         })
 }
 export function getallBooks() {
-    return axios.get(requests.bookapi + '/allbook')
+    return axios.get(requests.ordersapi + '/allcommande')
         .then(res => {
             return res
         })
