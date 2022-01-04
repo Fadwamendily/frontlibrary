@@ -14,16 +14,16 @@ const BookItem = ({ book }) => {
   return (
 
     <Card
-      style={{ width: 300 , marginTop: 30 }}
+      style={{ width: 300, marginTop: 30 }}
       cover={<img
         alt="book"
         src={"http://localhost:5000/getfile/" + book.image}
-       style= {{ width: 300 , height:400 }}
+        style={{ width: 300, height: 400 }}
       />}>
-{
-  user.role==="Reader"?<FcViewDetails style={{width: "30px", height: "30px", marginLeft:"220px"}} /> :<FiShoppingCart style={{width: "30px", height: "30px", marginLeft:"220px"}} />
-}
-       
+      <Meta>
+        <FiShoppingCart style={{ width: "30px", height: "30px", marginLeft: "220px" }} />
+        <FcViewDetails style={{ width: "30px", height: "30px", marginLeft: "220px" }} />
+      </Meta>
       <Meta
         title={book.title}
       />

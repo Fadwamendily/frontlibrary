@@ -49,7 +49,6 @@ export const bookSlice = createSlice({
 
             })
             .addCase(getallbook.fulfilled, (state, action) => {
-           console.log(action.payload.data);
                  state.bookListstatus = action.payload.data
             })
             .addCase(getallbook.rejected, (state, action) => {

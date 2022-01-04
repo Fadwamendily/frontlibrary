@@ -101,7 +101,7 @@ export default () => {
     };
     return (
         <>
-            <Layout style={{ padding: 0, height: "200vh" }} >
+            <Layout style={{ padding: 0, height: "100%" }} >
                 <Layout style={{ padding: '70px 0px' }} >
                     {user.role === "Admin" ? <Adminsidebar /> :
                         user.role === "Reader" ? <Readersidebar /> : <Usersidebar />}

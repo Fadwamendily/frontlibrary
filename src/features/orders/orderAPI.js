@@ -19,3 +19,12 @@ export function getallBooks() {
             return err
         })
 }
+/* export function getallBooks() {
+    return axios.get(requests.ordersapi + '/allcommande')
+        .then(res => {
+            return res
+        })
+        .catch(err => {
+            return err
+        })
+} */

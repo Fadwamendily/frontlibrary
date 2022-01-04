@@ -87,7 +87,7 @@ export const userSlice = createSlice({
 
             })
             .addCase(sendmail.pending, (state, action) => {
-                state.sendmailstatus = 'loading'
+                 state.sendmailstatus = 'loading'
             })
             .addCase(sendmail.fulfilled, (state, action) => {
                 console.log(action.payload);

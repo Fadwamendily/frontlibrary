@@ -10,7 +10,7 @@ import UnPrivateRoute from "./components/higher_order_component/UnPrivateRoute";
 import myprofile from './components/user/myprofile';
 import addaBook from './components/user/addaBook';
 import mybooks from './components/user/mybooks/bookList';
-import oderNewBook from './components/user/oderNewBook';
+import oderNewBook from './components/user/oderNewBook/bookList';
 import orderedBooks from './components/user/orderedBooks';
 import { getallcategories } from './features/categories/categoriesSlice';
 import { getalllanguages } from './features/Languages/languagesSlice';
@@ -41,7 +41,7 @@ function App() {
           <PrivateRoute role={["Reader","Admin","Library","Author"]} path="/home" component={Home} />
           <UnPrivateRoute path="/Login" component={Login} />
           <UnPrivateRoute path="/Register" component={Register} />
-          <Route exact path="/" component={Landing} />
+          <Route  path="/" component={Landing} />
         </Switch>
 
       </Router>
