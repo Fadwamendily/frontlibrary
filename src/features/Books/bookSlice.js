@@ -1,9 +1,11 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { createbook,getallBooks } from './bookAPI';
+import { createbook, getallBooks } from './bookAPI';
 
 const initialState = {
     craetebookstatus: '',
     bookListstatus: [],
+    singleBook: null,
+
 
 };
 
@@ -26,9 +28,17 @@ export const creatbook = createAsyncThunk(
 );
 
 export const bookSlice = createSlice({
-    name: 'books',
+    name: 'book',
     initialState,
     reducers: {
+        getbookById: (state, action) => {
+            console.log(action);
+            console.log("payload here", action.payload)
+            for (let item of state.bookListstatus) {
+                if (item._id === action.payload.id)
+                    state.singleBook = item
+            }
+        }
     },
 
     extraReducers: (builder) => {
@@ -49,8 +59,8 @@ export const bookSlice = createSlice({
 
             })
             .addCase(getallbook.fulfilled, (state, action) => {
-           console.log(action.payload.data);
-                 state.bookListstatus = action.payload.data
+                console.log(action.payload.data);
+                state.bookListstatus = action.payload.data
             })
             .addCase(getallbook.rejected, (state, action) => {
 
@@ -58,10 +68,12 @@ export const bookSlice = createSlice({
     }
 })
 
-export const { } = bookSlice.actions;
+export const {getbookById} = bookSlice.actions;
+
 
 export const selectcreatebook = (state) => state.books.craetebookstatus;
 export const selectgetallstatus = (state) => state.books.getallstatus;
 export const selectbookListstatus = (state) => state.books.bookListstatus;
+export const selectsingleBook = (state) => state.books.singleBook;
 
 export default bookSlice.reducer;

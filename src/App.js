@@ -11,37 +11,38 @@ import myprofile from './components/user/myprofile';
 import addaBook from './components/user/addaBook';
 import mybooks from './components/user/mybooks/bookList';
 import oderNewBook from './components/user/oderNewBook/bookList';
-import orderedBooks from './components/user/orderedBooks';
+import orderedBooks from './components/user/orderedBooks'; 
 import { getallcategories } from './features/categories/categoriesSlice';
 import { getalllanguages } from './features/Languages/languagesSlice';
 import { useDispatch } from 'react-redux';
 import { getallbook } from './features/Books/bookSlice';
+
 function App() {
-  
+
   const dispatch = useDispatch()
-    
+
   useEffect(() => {
     dispatch(getallcategories())
     dispatch(getalllanguages())
     dispatch(getallbook())
-   
+
   }, [])
- 
+
   return (
 
     <div>
       <Router>
         <Navbar />
         <Switch>
-          <PrivateRoute role={["Reader","Library","Author"]} path="/myprofile" component={myprofile} />
-          <PrivateRoute role={["Reader","Library","Author"]} path="/addbook" component={addaBook} />
-          <PrivateRoute role={["Reader","Library","Author"]} path="/myListOfbooks" component={mybooks} />
-          <PrivateRoute role={["Reader","Library","Author"]} path="/odernewbook" component={oderNewBook} />
-          <PrivateRoute role={["Reader","Library","Author"]} path="/myorderedbooks" component={orderedBooks} />
-          <PrivateRoute role={["Reader","Admin","Library","Author"]} path="/home" component={Home} />
+          <PrivateRoute role={["Reader", "Library", "Author"]} path="/myprofile" component={myprofile} />
+          <PrivateRoute role={["Reader", "Library", "Author"]} path="/addbook" component={addaBook} />
+          <PrivateRoute role={["Reader", "Library", "Author"]} path="/myListOfbooks" component={mybooks} />
+            <PrivateRoute role={["Reader","Library","Author"]} path="/odernewbook" component={oderNewBook} />
+           <PrivateRoute role={["Reader","Library","Author"]} path="/myorderedbooks" component={orderedBooks} /> 
+          <PrivateRoute role={["Reader", "Admin", "Library", "Author"]} path="/home" component={Home} />
           <UnPrivateRoute path="/Login" component={Login} />
           <UnPrivateRoute path="/Register" component={Register} />
-          <Route  path="/" component={Landing} />
+          <Route path="/" component={Landing} />
         </Switch>
 
       </Router>

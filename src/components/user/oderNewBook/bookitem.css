@@ -1,0 +1,24 @@
+.bookItem {
+    color: gray;
+    font-size: 30px;
+    margin-left: 270px ;
+    cursor: pointer;
+
+}
+#baniere{
+    height:taille_fixe px;
+    width:100%;
+    }
+     
+    #baniere_gauche{
+    width:50%;
+    height:100%;
+    float:left;
+    }
+     
+    #baniere_droite{
+    width:50%;
+    height:100%;
+    float:right;
+
+    }

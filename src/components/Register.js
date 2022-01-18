@@ -26,14 +26,12 @@ import {
 const { TextArea } = Input;
 const { Option } = Select;
 export default function Register(props) {
-
-
     const [role, setrole] = useState('');
     const dateFormat = 'DD/MM/YYYY';
     const customFormat = value => `custom format: ${value.format(dateFormat)}`
-
     const { setUser, setIsAuth } = useContext(AuthContext);
     const [userInfo, setUserInfo] = useState(null);
+  
     const onFinish = (values) => {
         console.log('Success:', values);
         values.role = role
@@ -52,8 +50,6 @@ export default function Register(props) {
     const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo);
     };
-
-
 
     return (
      
