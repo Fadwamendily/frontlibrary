@@ -1,10 +1,15 @@
-.bookItem {
+ .bookItem {
     color: gray;
     font-size: 30px;
-    margin-left: 270px ;
     cursor: pointer;
+} 
+ .bookItem1 {
+    color: gray;
+    font-size: 30px;
+    cursor: pointer;
+    float: right;
+} 
 
-}
 #baniere{
     height:taille_fixe px;
     width:100%;

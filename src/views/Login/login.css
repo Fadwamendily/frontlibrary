@@ -223,7 +223,7 @@ iframe {
   display: block;
   font-family: Poppins-Regular;
   font-size: 30px;
-  color: #fff2f2;
+  color: #cc4747;
   line-height: 1.2;
   text-align: center;
 }
@@ -434,11 +434,11 @@ input.input100 {
   width: 100%;
   height: 50px;
   border-radius: 10px;
-  background: #f58d04;
+  background: #f1c892;
 
   font-family: Montserrat-Bold;
   font-size: 12px;
-  color: #fff;
+  color: #0f0f0f;
   line-height: 1.2;
   text-transform: uppercase;
   letter-spacing: 1px;
