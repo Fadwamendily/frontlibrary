@@ -60,23 +60,3 @@ const AuthService = {
 }
 
 export default AuthService
-/* useEffect(() => {
-    AuthService.isAuthenticated().then((jsonData) => {
-        console.log("...isAuthenticated() function...", jsonData)
-        setIsAuth(jsonData.isAuthenticated);
-        setUser(jsonData.user);
-        setIsLoaded(true)
-        getmeAgain()
-    })
-}, [])
-
-useEffect(()=> {
-    getmeAgain()
-},[avatarupload])
-
-const getmeAgain = () => {
-    AuthService.getme().then(res => {
-        console.log(res);
-        setuserdetails(res)
-    })
-} */

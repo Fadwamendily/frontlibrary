@@ -107,7 +107,7 @@ export default () => {
                         user.role === "Reader" ? <Readersidebar /> : <Usersidebar />}
                     <Content style={{ marginTop: '50px', marginLeft: '200px' }} >
 
-                        <div className="col-md-5 border-right">
+                        <div className="col-md-5 border-right" ><h1>ADD NEW BOOK</h1>
                             <div className="p-3 py-5">
                                 <div className="col-md-12"><label className="labels">Title</label><input name="title" type="text" className="form-control" onChange={handleChange} /></div>
                                 <div className="col-md-12"><label className="labels">Price</label><input name="price" type="number" className="form-control" onChange={handleChange} /></div>

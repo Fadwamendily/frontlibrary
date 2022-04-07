@@ -1,10 +1,17 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { createbook, getallBooks } from './bookAPI';
+const orderedBooks = localStorage.getItem('orderedBooks') 
+                       ? JSON.parse(localStorage.getItem('orderedBooks'))
+                       : []
 
 const initialState = {
     craetebookstatus: '',
     bookListstatus: [],
     singleBook: null,
+    orderedbooks: orderedBooks,
+    quantity: 0,
+    total: 0,
+
 
 
 };
@@ -36,9 +43,30 @@ export const bookSlice = createSlice({
             console.log("payload here", action.payload)
             for (let item of state.bookListstatus) {
                 if (item._id === action.payload.id)
+                console.log("item",item)
                     state.singleBook = item
+
             }
-        }
+        },
+        orderaBook: (state, action) => {
+            console.log("payload here", action.payload)
+
+            for (let item of state.bookListstatus) {
+                if (item._id === action.payload.id)
+                state.singleBook = item
+            }
+            state.orderedbooks.push(state.singleBook);
+            localStorage.setItem('orderedBooks', JSON.stringify(state.orderedbooks))
+
+ 
+
+          },
+          reset: (state) => {
+            state.orderedbooks = [];
+            state.quantity = 0;
+            state.total = 0;
+            localStorage.clear('orderedBooks');
+          },
     },
 
     extraReducers: (builder) => {
@@ -68,12 +96,15 @@ export const bookSlice = createSlice({
     }
 })
 
-export const {getbookById} = bookSlice.actions;
+export const {getbookById,orderaBook,reset} = bookSlice.actions;
 
 
 export const selectcreatebook = (state) => state.books.craetebookstatus;
 export const selectgetallstatus = (state) => state.books.getallstatus;
 export const selectbookListstatus = (state) => state.books.bookListstatus;
 export const selectsingleBook = (state) => state.books.singleBook;
+export const selectorderedbooks = (state) => state.books.orderedbooks;
+export const selectquantity = (state) => state.books.quantity;
+export const selecttotal = (state) => state.books.total;
 
 export default bookSlice.reducer;

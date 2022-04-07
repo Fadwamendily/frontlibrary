@@ -12,6 +12,8 @@ export default function Logout() {
             if(jsonData.success){
                 setUser(jsonData.user);
                 setIsAuth(false)
+                localStorage.clear('userdetails');
+
             }
         })
     }

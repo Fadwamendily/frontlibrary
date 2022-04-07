@@ -17,9 +17,9 @@ export default () => {
     const { Content, Footer } = Layout;
 
     const dispatch = useDispatch()
-    useEffect(() => {
+  /*   useEffect(() => {
         dispatch(getme())
-    }, [])
+    }, []) */
 
     const { user } = useContext(AuthContext)
     const userdetails = useSelector(selectuserdetails)

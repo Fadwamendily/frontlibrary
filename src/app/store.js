@@ -14,3 +14,7 @@ export const store = configureStore({
     languages:languagesReducers
   },
 });
+
+store.subscribe(()=>{
+  localStorage.setItem('reduxState', JSON.stringify(store.getState()))
+})

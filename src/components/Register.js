@@ -1,7 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { AuthContext } from './context/AuthContext';
 import AuthService from './services/AuthService';
-import { Col, Row } from 'antd'
 import Author from './assets/images/author.png'
 import Reader from './assets/images/reader.png'
 import Library from './assets/images/library.png'
@@ -15,41 +14,13 @@ import {
     Form,
     Input,
     Button,
-    Radio,
     Select,
-    Cascader,
     DatePicker,
-    InputNumber,
-    TreeSelect,
-    Switch,
 } from 'antd';
-const { TextArea } = Input;
-const { Option } = Select;
+
 export default function Register(props) {
     const [role, setrole] = useState('');
-    const dateFormat = 'DD/MM/YYYY';
-    const customFormat = value => `custom format: ${value.format(dateFormat)}`
     const { setUser, setIsAuth } = useContext(AuthContext);
-    const [userInfo, setUserInfo] = useState(null);
-  
-    const onFinish = (values) => {
-        console.log('Success:', values);
-        values.role = role
-        AuthService.register(values).then(jsonData => {
-            if (!jsonData.error) {
-                setUser(jsonData.user);
-                setIsAuth(jsonData.isAuthenticated);
-                props.history.replace("/home")
-            }
-            else {
-                console.log("...register error...", jsonData)
-            }
-        })
-    };
-
-    const onFinishFailed = (errorInfo) => {
-        console.log('Failed:', errorInfo);
-    };
 
     return (
      
@@ -66,20 +37,14 @@ export default function Register(props) {
 
                         <div >
                             <div className="Author">
-                                <img onClick={() => setrole('Author')} src={Author} alt="" align="center" />
-                                <h4>Author</h4>
+                                <img onClick={() => setrole('Entreprise')} src={Author} alt="" align="center" />
+                                <h4>Entreprise</h4>
                             </div>
                         </div>
                         <div   >
                             <div className="Author">
-                                <img onClick={() => setrole('Reader')} src={Reader} alt="" align="left" />
-                                <h4>Reader</h4>
-                            </div>
-                        </div>
-                        <div  >
-                            <div className="Author">
-                                <img onClick={() => setrole('Library')} src={Library} alt="" align="right" />
-                                <h4>Library</h4>
+                                <img onClick={() => setrole('Freelancer')} src={Reader} alt="" align="left" />
+                                <h4>Freelancer</h4>
                             </div>
                         </div>
                     </div>
@@ -98,8 +63,7 @@ export default function Register(props) {
                     initialValues={{
                         remember: true,
                     }}
-                    onFinish={onFinish}
-                    onFinishFailed={onFinishFailed}
+                    
                     autoComplete="off"
                   /*  style= {{backgroundImage:`url(${abc})`}} */
                    >
@@ -158,9 +122,7 @@ export default function Register(props) {
                             <Select.Option value="Female">Female</Select.Option>
                         </Select>
                     </Form.Item>
-                    <Form.Item name='birthDate'label="Birth Date">
-                        <DatePicker format={dateFormat} defaultValue={moment('2015/01/01', dateFormat)}/>
-                    </Form.Item>
+
                     <Form.Item name='gender'label="Register Now" style={{align:"right"}}>
                         <Button type="primary" htmlType="submit" style={{align:"right", background:"orange"}}> Submit</Button>
                     </Form.Item>

@@ -4,7 +4,7 @@ import { FcViewDetails } from 'react-icons/fc';
 import { FiShoppingCart } from 'react-icons/fi';
 import { AuthContext } from '../../context/AuthContext';
 import './bookitem.css'
-import { getbookById, selectsingleBook } from '../../../features/Books/bookSlice';
+import { getbookById, orderaBook, selectsingleBook } from '../../../features/Books/bookSlice';
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 import { Modal } from 'antd';
@@ -18,6 +18,9 @@ const BookItem = ({ book }) => {
   const handleCancel = () => {
     setIsModalVisible(false);
   };
+  const handleOrder = () => {
+    dispatch(orderaBook({ id: book._id }))
+  }
 
   let modalView = '';
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -69,11 +72,10 @@ const BookItem = ({ book }) => {
   const { user } = useContext(AuthContext)
   const dispatch = useDispatch()
   const handlebookdetails = () => {
-    dispatch(getbookById({ id: book._id }))//hedhi bch djibli state single book ui lmochkel fil affichage yaffichi 9bal maybadl fi state haka laeh
-    // ki yejbed me state yejbed mel api ? ki lflesh ywali transparent b noir andi tnajamch tbadl couleurou tdispatchi hedhi fi reducers mch ydispatchi ml back  ui hak aaleh chouf
-
+    dispatch(getbookById({ id: book._id }))
     setIsModalVisible(true)
   }
+
 
   return (
 
@@ -91,11 +93,11 @@ const BookItem = ({ book }) => {
           {
             user.role == "Reader" ?
               <div style={{ display: "flex", float: "right", }}>
-                <button type="button" class="btn btn-success">Add to Card</button>
+                <button type="button" class="btn btn-success" onClick={handleOrder}>Add to Card</button>
                 <button type="button" style={{ marginLeft: "5px", backgroundColor: "ButtonText" }} class="btn btn-success" onClick={handlebookdetails}>More details</button>
               </div>
               :
-              <div style={{ display: "flex", float: "right"}}>
+              <div style={{ display: "flex", float: "right" }}>
                 <button type="button" class="btn btn-success" onClick={handlebookdetails}>More details</button>
               </div>
 

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+                                                                                                                                                                                              import React, { useContext } from 'react'
 import { AuthContext } from '../../components/context/AuthContext';
 import Logout from '../../components/Logout';
 export default function Navbar() {

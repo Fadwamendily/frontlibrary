@@ -1,6 +1,4 @@
 import React, { createContext, useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { selectavatarstatus } from '../../features/users/userSlice';
 import AuthService from "../services/AuthService";
 
 

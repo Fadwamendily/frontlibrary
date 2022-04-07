@@ -1,11 +1,14 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import {  getMe, sendMail, updateUser, uploadAvatar } from './userAPI';
+const userdetails = localStorage.getItem('userdetails') 
+                       ? JSON.parse(localStorage.getItem('userdetails'))
+                       : null
 const initialState = {
 
     user: null,
     avatarstatus: '',
     updatestatus:'',
-    userdetails : null
+    userdetails 
 };
 
 // uploadd user avatar redux action
@@ -106,6 +109,8 @@ export const userSlice = createSlice({
                 state.getmestatus = 'success'
                 console.log(action.payload);
                 state.userdetails = action.payload.data.data
+                localStorage.setItem('userdetails', JSON.stringify(state.userdetails))
+
 
             })
             .addCase(getme.rejected, (state, action) => {

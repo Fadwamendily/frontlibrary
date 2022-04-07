@@ -3,11 +3,13 @@ import './login.css'
 import { AuthContext } from '../../components/context/AuthContext';
 import AuthService from '../../components/services/AuthService';
 import abcd from '../../components/assets/images/abcd.png'
+import { useDispatch } from 'react-redux';
+import { getme } from '../../features/users/userSlice';
 
 export default function Login(props) {
     const { setUser, setIsAuth } = useContext(AuthContext);
     const [userInfo, setUserInfo] = useState(null);
-
+    const dispatch = useDispatch()
     function handleInput(event) {
         setUserInfo({ ...userInfo, [event.target.id]: event.target.value })
     }
@@ -17,6 +19,7 @@ export default function Login(props) {
             const { isAuthenticated, user } = jsonData;
             setUser(user);
             setIsAuth(isAuthenticated);
+            dispatch(getme())
 
             if (isAuthenticated) {
                 if (props.location.state)
@@ -29,7 +32,7 @@ export default function Login(props) {
     }
 
     return (
-        
+
         <div>
             <div style={{ marginTop: '100px' }}  >
                 <div className="limiter">
@@ -43,7 +46,7 @@ export default function Login(props) {
                                     <input id="email" type="text" onChange={handleInput} className="input100" placeholder="Email" />
                                 </div>
                                 <div className="wrap-input100 validate-input" data-validate="Password is required">
-                             <input id="password" type="password" onChange={handleInput} className="form-control" placeholder="Password" />
+                                    <input id="password" type="password" onChange={handleInput} className="form-control" placeholder="Password" />
                                 </div>
                                 <div className="flex-sb-m w-full p-t-3 p-b-32">
                                     <div>
